@@ -1,4 +1,5 @@
-// Video tutorial from: https://youtu.be/ok5zoeE_5x0
+// Video tutorial from: https://youtu.be/ok5zoeE_5x0 (Screen 2)
+// Video tutorial from: https://youtu.be/yjij9H2KS-Q (Screen 1)
 
 import 'package:flutter/material.dart';
 import 'package:plant_app/plant_list.dart';
