@@ -7,6 +7,36 @@ class PlantList extends StatefulWidget {
 }
 
 class _PlantListState extends State<PlantList> {
+  ScrollController _scrollController;
+  List<String> allDescriptions = [
+    'Aloe vera is a succulent plant of the genus Aloe. I\'ts medicinal uses and air purifying ability make it the plant that you shouldn\'t live without.',
+    'Some other description',
+    'Third description',
+    'Fourth description',
+  ];
+
+  String description;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _scrollController = ScrollController();
+    _scrollController.addListener(changeDescription);
+    setState(() {
+      description = allDescriptions.first;
+    });
+  }
+
+  changeDescription() {
+    var value = _scrollController.offset.round();
+    var descindex = (value / 150).round();
+    print(value);
+    setState(() {
+      description = allDescriptions[descindex];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -14,12 +44,43 @@ class _PlantListState extends State<PlantList> {
         Container(
           height: 350,
           child: ListView(
+            controller: _scrollController,
             padding: EdgeInsets.only(left: 25),
             scrollDirection: Axis.horizontal,
             children: <Widget>[
+              getPlantCard('assets/aloevera.png', '25', 'OUTDOOR', 'Aloe Vera'),
+              SizedBox(width: 15),
+              getPlantCard('assets/smallplant.png', '35', 'INDOOR', 'Ficus'),
+              SizedBox(width: 15),
               getPlantCard(
-                  'assets/whiteplant.png', '25', 'OUTDOOR', 'Aloe Vera')
+                  'assets/smallplant.png', '45', 'OUTDOOR', 'Aloe Vera'),
+              SizedBox(width: 15),
+              getPlantCard(
+                  'assets/whiteplant.png', '15', 'OUTDOOR', 'Aloe Vera'),
+              SizedBox(width: 15),
             ],
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(left: 25, top: 10),
+          child: Text(
+            'Description',
+            style: TextStyle(
+                fontFamily: 'Redhat',
+                color: Colors.black,
+                fontSize: 17,
+                fontWeight: FontWeight.w500),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(left: 25, top: 10),
+          child: Text(
+            description,
+            style: TextStyle(
+              fontFamily: 'Redhat',
+              color: Colors.black,
+              fontSize: 12,
+            ),
           ),
         )
       ],
@@ -123,7 +184,25 @@ class _PlantListState extends State<PlantList> {
                         icon: MaterialCommunityIcons.help, noBorder: true),
                   ],
                 ),
+                SizedBox(width: 10),
               ],
+            ),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(left: 90, top: 300),
+          child: Container(
+            height: 50,
+            width: 50,
+            decoration: BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(25),
+            ),
+            child: Center(
+              child: Icon(
+                MaterialCommunityIcons.cart,
+                color: Colors.white,
+              ),
             ),
           ),
         )
@@ -143,11 +222,27 @@ class _PlantListState extends State<PlantList> {
         ),
         borderRadius: BorderRadius.circular(5),
       ),
-      child: Icon(
-        icon,
-        color: Colors.white.withOpacity(0.40),
-        size: 20,
-      ),
+      child: noBorder
+          ? InkWell(
+              onTap: () {},
+              child: Container(
+                height: 30,
+                width: 30,
+                decoration: BoxDecoration(
+                  color: Color(0xff399d63),
+                ),
+                child: Icon(
+                  MaterialCommunityIcons.help,
+                  color: Colors.white.withOpacity(0.4),
+                  size: 20,
+                ),
+              ),
+            )
+          : Icon(
+              icon,
+              color: Colors.white.withOpacity(0.40),
+              size: 20,
+            ),
     );
   }
 }

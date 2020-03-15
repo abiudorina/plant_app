@@ -1,3 +1,5 @@
+// Video tutorial from: https://youtu.be/ok5zoeE_5x0
+
 import 'package:flutter/material.dart';
 import 'package:plant_app/plant_list.dart';
 
