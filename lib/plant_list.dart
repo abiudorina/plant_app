@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class PlantList extends StatefulWidget {
   @override
@@ -16,7 +17,8 @@ class _PlantListState extends State<PlantList> {
             padding: EdgeInsets.only(left: 25),
             scrollDirection: Axis.horizontal,
             children: <Widget>[
-              getPlantCard('imgPath', '225', 'SomePlant', 'Cabbage')
+              getPlantCard(
+                  'assets/whiteplant.png', '25', 'OUTDOOR', 'Aloe Vera')
             ],
           ),
         )
@@ -36,9 +38,109 @@ class _PlantListState extends State<PlantList> {
               borderRadius: BorderRadius.circular(10),
               color: Color(0xff399D63),
             ),
+            height: 250,
+            width: 225,
+            child: Column(
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Column(
+                      children: <Widget>[
+                        SizedBox(height: 10),
+                        Text(
+                          'FROM',
+                          style: TextStyle(
+                            fontFamily: 'Redhat',
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff8ac7a4),
+                          ),
+                        ),
+                        Text(
+                          '\$' + price,
+                          style: TextStyle(
+                            fontFamily: 'Redhat',
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(width: 10)
+                  ],
+                ),
+                Image(
+                  image: AssetImage(imgPath),
+                  height: 165,
+                ),
+                Row(
+                  children: <Widget>[
+                    SizedBox(width: 25),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          plantType,
+                          style: TextStyle(
+                            fontFamily: 'Redhat',
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xff8ac7a4),
+                          ),
+                        ),
+                        Text(
+                          plantName,
+                          style: TextStyle(
+                            fontFamily: 'Redhat',
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10),
+                Row(
+                  children: <Widget>[
+                    SizedBox(width: 25),
+                    getPlantCardicons(icon: Icons.wb_sunny),
+                    SizedBox(width: 15),
+                    getPlantCardicons(icon: Icons.pin_drop),
+                    SizedBox(width: 15),
+                    getPlantCardicons(icon: Icons.timelapse),
+                    SizedBox(width: 15),
+                    getPlantCardicons(icon: Icons.arrow_back_ios),
+                  ],
+                ),
+              ],
+            ),
           ),
         )
       ],
+    );
+  }
+
+  getPlantCardicons({IconData icon}) {
+    return Container(
+      height: 30,
+      width: 30,
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Color(0xff8ac7a4),
+          style: BorderStyle.solid,
+          width: 0.5,
+        ),
+        borderRadius: BorderRadius.circular(5),
+      ),
+      child: Icon(
+        icon,
+        color: Colors.white.withOpacity(0.40),
+        size: 20,
+      ),
     );
   }
 }
