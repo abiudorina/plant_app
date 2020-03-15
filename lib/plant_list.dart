@@ -107,13 +107,20 @@ class _PlantListState extends State<PlantList> {
                 Row(
                   children: <Widget>[
                     SizedBox(width: 25),
-                    getPlantCardicons(icon: Icons.wb_sunny),
+                    getPlantCardicons(
+                        icon: MaterialCommunityIcons.white_balance_sunny,
+                        noBorder: false),
                     SizedBox(width: 15),
-                    getPlantCardicons(icon: Icons.pin_drop),
+                    getPlantCardicons(
+                        icon: MaterialCommunityIcons.water_outline,
+                        noBorder: false),
                     SizedBox(width: 15),
-                    getPlantCardicons(icon: Icons.timelapse),
+                    getPlantCardicons(
+                        icon: MaterialCommunityIcons.thermometer_lines,
+                        noBorder: false),
                     SizedBox(width: 15),
-                    getPlantCardicons(icon: Icons.arrow_back_ios),
+                    getPlantCardicons(
+                        icon: MaterialCommunityIcons.help, noBorder: true),
                   ],
                 ),
               ],
@@ -124,13 +131,13 @@ class _PlantListState extends State<PlantList> {
     );
   }
 
-  getPlantCardicons({IconData icon}) {
+  getPlantCardicons({@required IconData icon, bool noBorder}) {
     return Container(
       height: 30,
       width: 30,
       decoration: BoxDecoration(
         border: Border.all(
-          color: Color(0xff8ac7a4),
+          color: noBorder ? Colors.transparent : Color(0xff8ac7a4),
           style: BorderStyle.solid,
           width: 0.5,
         ),
